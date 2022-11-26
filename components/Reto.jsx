@@ -24,6 +24,7 @@ function Reto({
 
 	return (
 		<TouchableOpacity
+			style={tw('mx-4 my-2')}
 			activeOpacity={0.9}
 			onPress={() =>
 				navigation.navigate('DetalleReto', {

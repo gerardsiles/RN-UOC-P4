@@ -13,7 +13,13 @@ import { useLayoutEffect } from 'react';
 import { Image } from '@rneui/themed';
 import { AntDesign } from '@expo/vector-icons';
 import { db } from '../db/firebaseConfig';
-import { collection, onSnapshot } from 'firebase/firestore';
+import {
+	collection,
+	getDoc,
+	onSnapshot,
+	doc,
+	getDocs,
+} from 'firebase/firestore';
 import Reto from '../components/Reto';
 
 const buttonStyle = {
@@ -47,7 +53,7 @@ const Evolucion = () => {
 		} catch (error) {
 			console.log(error);
 		}
-	}, [goals]);
+	}, []);
 
 	// Estilo del Header
 	useLayoutEffect(() => {
@@ -131,12 +137,7 @@ const Evolucion = () => {
 				))}
 			</ScrollView> */}
 
-			<FlatList
-				data={goals}
-				renderItem={renderItem}
-				keyExtractor={item => item.id}
-				extraData={selectedId}
-			/>
+			<FlatList data={goals} renderItem={renderItem} extraData={selectedId} />
 			<TouchableOpacity style={buttonStyle}>
 				<Button
 					title='Nuevo Reto'
