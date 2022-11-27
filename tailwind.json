@@ -34,14 +34,6 @@
 			"bottom": 40
 		}
 	},
-	"m-4": {
-		"style": {
-			"marginTop": 16,
-			"marginRight": 16,
-			"marginBottom": 16,
-			"marginLeft": 16
-		}
-	},
 	"m-2": {
 		"style": {
 			"marginTop": 8,
@@ -85,9 +77,24 @@
 			"marginLeft": 12
 		}
 	},
+	"mr-3": {
+		"style": {
+			"marginRight": 12
+		}
+	},
 	"mt-2": {
 		"style": {
 			"marginTop": 8
+		}
+	},
+	"mb-3": {
+		"style": {
+			"marginBottom": 12
+		}
+	},
+	"mb-5": {
+		"style": {
+			"marginBottom": 20
 		}
 	},
 	"flex": {
@@ -151,6 +158,14 @@
 			"borderTopRightRadius": 9999,
 			"borderBottomRightRadius": 9999,
 			"borderBottomLeftRadius": 9999
+		}
+	},
+	"rounded-lg": {
+		"style": {
+			"borderTopLeftRadius": 8,
+			"borderTopRightRadius": 8,
+			"borderBottomRightRadius": 8,
+			"borderBottomLeftRadius": 8
 		}
 	},
 	"bg-red-500": {

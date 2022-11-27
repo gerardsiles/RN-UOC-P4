@@ -26,10 +26,6 @@
   bottom: 2.5rem
 }
 
-.m-4 {
-  margin: 1rem
-}
-
 .m-2 {
   margin: 0.5rem
 }
@@ -60,8 +56,20 @@
   margin-left: 0.75rem
 }
 
+.mr-3 {
+  margin-right: 0.75rem
+}
+
 .mt-2 {
   margin-top: 0.5rem
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem
 }
 
 .flex {
@@ -106,6 +114,10 @@
 
 .rounded-full {
   border-radius: 9999px
+}
+
+.rounded-lg {
+  border-radius: 0.5rem
 }
 
 .bg-red-500 {
