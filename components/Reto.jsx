@@ -38,19 +38,25 @@ function Reto({
 				})
 			}
 		>
-			<Text style={tw('uppercase text-xl font-bold')}>{nombre}</Text>
-			<Text>{detalle}</Text>
+			<Text style={tw('uppercase text-xl font-bold w-3/4')}>{nombre}</Text>
 
-			<View style={tw('absolute bottom-0 right-8 bg-red-500 rounded-xl p-1')}>
-				<Text style={tw('text-white')}>{completado}%</Text>
+			<View style={tw('flex-row')}>
+				<Text style={tw('w-3/4')}>{detalle}</Text>
+
+				<View
+					style={tw(
+						'absolute content-center items-center bottom-0 right-8 bg-red-500 rounded-xl p-1'
+					)}
+				>
+					<Text style={tw('text-white')}>{completado}%</Text>
+				</View>
+				<AntDesign
+					name='right'
+					size={18}
+					color='white'
+					style={tw('absolute right-2 bottom-2/4')}
+				/>
 			</View>
-
-			<AntDesign
-				name='right'
-				size={18}
-				color='white'
-				style={tw('absolute right-2 bottom-1/4')}
-			/>
 		</TouchableOpacity>
 	);
 }

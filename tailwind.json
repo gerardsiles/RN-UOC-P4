@@ -34,6 +34,11 @@
 			"bottom": 40
 		}
 	},
+	"bottom-2/4": {
+		"style": {
+			"bottom": "50%"
+		}
+	},
 	"m-2": {
 		"style": {
 			"marginTop": 8,
@@ -112,9 +117,34 @@
 			"height": "100%"
 		}
 	},
+	"h-1": {
+		"style": {
+			"height": 4
+		}
+	},
+	"h-2": {
+		"style": {
+			"height": 8
+		}
+	},
+	"h-4": {
+		"style": {
+			"height": 16
+		}
+	},
+	"h-5": {
+		"style": {
+			"height": 20
+		}
+	},
 	"w-20": {
 		"style": {
 			"width": 80
+		}
+	},
+	"w-3/4": {
+		"style": {
+			"width": "75%"
 		}
 	},
 	"flex-1": {

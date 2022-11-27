@@ -24,15 +24,17 @@ const NuevoReto = () => {
 	const tw = useTailwind();
 	const navigation = useNavigation();
 
+	// State
 	const [name, setName] = useState('');
 	const [detalle, setDetalle] = useState('');
 	const [categoria, setCategoria] = useState('');
-	const [tiempo, setTiempo] = useState('');
+	const [tiempo, setTiempo] = useState(0);
 	const [prioridad, setPrioridad] = useState('');
-	const [periodicidad, setPeriodicidad] = useState('');
+	const [periodicidad, setPeriodicidad] = useState(0);
 	const [activo, setActivo] = useState(false);
-	const [completado, setCompletado] = useState('');
+	const [completado, setCompletado] = useState(0);
 
+	// Input refs
 	const nameRef = React.createRef();
 	const detalleRef = React.createRef();
 	const categoriaRef = React.createRef();
@@ -40,6 +42,17 @@ const NuevoReto = () => {
 	const periodicidadRef = React.createRef();
 	const prioridadRef = React.createRef();
 	const completadoRef = React.createRef();
+
+	// Error Messages
+	const nameError = name ? '' : 'Nombre no puede estar vacio';
+	const detalleError = detalle ? '' : 'Detalle no puede estar vacio';
+	const categoriaError = categoria ? '' : 'Categoria no puede estar vacio';
+	const tiempoError = tiempo ? '' : 'Tiempo no puede estar vacio';
+	const periodicidadError = periodicidad
+		? ''
+		: 'Periodicidad no puede estar vacio';
+	const prioridadError = prioridad ? '' : 'Prioridad no puede estar vacio';
+	const completadoError = completado ? '' : 'Completado no puede estar vacio';
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
@@ -75,12 +88,72 @@ const NuevoReto = () => {
 		if (name.length < 1) {
 			nameRef.current.shake();
 			nameRef.current.setNativeProps({
-				errorMessage: 'No puede estar vacio',
-				renderErrorMessage: true,
+				errorMessage: nameError,
+				errorStyle: {
+					color: '#db6a5e',
+					fontWeight: 'bold',
+				},
 			});
 		}
-		if (detalle.length < 1 || categoria.length < 1 || prioridad.length < 1) {
+		if (detalle.length < 1) {
 			detalleRef.current.shake();
+			detalleRef.current.setNativeProps({
+				errorMessage: nameError,
+				errorStyle: {
+					color: '#db6a5e',
+					fontWeight: 'bold',
+				},
+			});
+		}
+		if (categoria.length < 1) {
+			categoriaRef.current.shake();
+			categoriaRef.current.setNativeProps({
+				errorMessage: nameError,
+				errorStyle: {
+					color: '#db6a5e',
+					fontWeight: 'bold',
+				},
+			});
+		}
+		if (tiempo.length < 1 || typeof (tiempo !== 'number')) {
+			tiempoRef.current.shake();
+			tiempoRef.current.setNativeProps({
+				errorMessage: nameError,
+				errorStyle: {
+					color: '#db6a5e',
+					fontWeight: 'bold',
+				},
+			});
+		}
+		if (periodicidad.length < 1 || typeof (periodicidad !== 'number')) {
+			periodicidadRef.current.shake();
+			periodicidadRef.current.setNativeProps({
+				errorMessage: nameError,
+				errorStyle: {
+					color: '#db6a5e',
+					fontWeight: 'bold',
+				},
+			});
+		}
+		if (prioridad.length < 1) {
+			prioridadRef.current.shake();
+			prioridadRef.current.setNativeProps({
+				errorMessage: nameError,
+				errorStyle: {
+					color: '#db6a5e',
+					fontWeight: 'bold',
+				},
+			});
+		}
+		if (completado.length < 1 || typeof (prioridad !== 'number')) {
+			completadoRef.current.shake();
+			completadoRef.current.setNativeProps({
+				errorMessage: nameError,
+				errorStyle: {
+					color: '#db6a5e',
+					fontWeight: 'bold',
+				},
+			});
 		} else {
 			addDoc(collection(db, 'retos'), {
 				activo: activo,
@@ -91,8 +164,14 @@ const NuevoReto = () => {
 				periodicidad: periodicidad,
 				prioridad: prioridad,
 				tiempo: tiempo,
-			});
-
+			})
+				.then(docRef => {
+					alert('Reto creado, con el id de: ' + JSON.stringify(docRef.id));
+				})
+				.catch(error => {
+					alert(error);
+				});
+			// Redireccionar
 			navigation.navigate('Evolucion');
 		}
 	};
@@ -119,8 +198,11 @@ const NuevoReto = () => {
 								detalleRef.current.focus();
 							}}
 							ref={nameRef}
-							errorMessage=''
-							renderErrorMessage={false}
+							errorMessage={nameError}
+							errorStyle={{
+								color: '#db6a5e',
+								fontWeight: 'bold',
+							}}
 						/>
 						<Text style={tw('text-xl  mt-2')}>Detalle</Text>
 						<Input
@@ -131,6 +213,11 @@ const NuevoReto = () => {
 							onSubmitEditing={() => {
 								categoriaRef.current.focus();
 							}}
+							errorMessage={detalleError}
+							errorStyle={{
+								color: '#db6a5e',
+								fontWeight: 'bold',
+							}}
 						/>
 						<Text style={tw('text-xl mt-2')}>Categoria</Text>
 						<Input
@@ -140,6 +227,11 @@ const NuevoReto = () => {
 							onChangeText={setCategoria}
 							onSubmitEdtiting={() => {
 								tiempoRef.current.focus();
+							}}
+							errorMessage={categoriaError}
+							errorStyle={{
+								color: '#db6a5e',
+								fontWeight: 'bold',
 							}}
 						/>
 						<Text style={tw('text-xl mt-2')}>Tiempo</Text>
@@ -152,6 +244,11 @@ const NuevoReto = () => {
 							onSubmitEditing={() => {
 								periodicidadRef.current.focus();
 							}}
+							errorMessage={tiempoError}
+							errorStyle={{
+								color: '#db6a5e',
+								fontWeight: 'bold',
+							}}
 						/>
 						<Text style={tw('text-xl mt-2 ')}>Periodicidad</Text>
 						<Input
@@ -162,6 +259,11 @@ const NuevoReto = () => {
 							keyboardType='number-pad'
 							onSubmitEditing={() => {
 								prioridadRef.current.focus();
+							}}
+							errorMessage={periodicidadError}
+							errorStyle={{
+								color: '#db6a5e',
+								fontWeight: 'bold',
 							}}
 						/>
 						<Text style={tw('text-xl mt-2 ')}>Prioridad</Text>
@@ -174,6 +276,11 @@ const NuevoReto = () => {
 							onSubmitEditing={() => {
 								completadoRef.current.focus();
 							}}
+							errorMessage={prioridadError}
+							errorStyle={{
+								color: '#db6a5e',
+								fontWeight: 'bold',
+							}}
 						/>
 
 						<Text style={tw('text-xl mt-2 ')}>Completado</Text>
@@ -182,6 +289,11 @@ const NuevoReto = () => {
 							placeholder='completado'
 							onChangeText={setCompletado}
 							keyboardType='number-pad'
+							errorMessage={completadoError}
+							errorStyle={{
+								color: '#db6a5e',
+								fontWeight: 'bold',
+							}}
 						/>
 						<View style={tw('flex-row content-center')}>
 							<BouncyCheckbox
